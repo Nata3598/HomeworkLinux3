@@ -1,0 +1,54 @@
+
+
+sudo useradd -m newuser1
+
+sudo su
+
+tail /etc/passwd
+...
+newuser1:x:1002:1002::/home/newuser1:/bin/bash
+
+tail /etc/group
+...
+newuser1:x:1002:
+
+sudo userdel newuser1
+
+
+
+sudo useradd newuser1
+
+sudo groupadd group1
+
+sudo groupadd group2
+
+sudo groupadd group3
+
+sudo usermod -g group3 newuser1
+
+sudo usermod -g newuser1 newuser1
+
+usermod -aG group2 newuser1
+
+usermod -aG group3 newuser1
+
+
+id newuser1
+uid=1002(newuser1) gid=1004(group3) groups=1004(group3),1003(group2)
+
+sudo usermod -G group3 newuser1
+
+id newuser1
+uid=1002(newuser1) gid=1004(group3) groups=1004(group3)
+
+
+sudo useradd -G sudo suser1
+sudo passwd suser1
+
+
+su - suser1
+sudo su
+
+id
+uid=0(root) gid=0(root) groups=0(root)
+
